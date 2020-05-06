@@ -1,0 +1,61 @@
+.iconpicker {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 20px 10px;
+    box-shadow: 0px 0px 5px black;
+    .sketch-picker {
+        height: 330px;
+        margin-left: 5px;
+    }
+    .iconbtn {
+        padding: 0px !important;
+        min-width: 28px;
+        min-height: 28px;
+    }
+    .iconrow {
+        width: 224px;
+        display: inline-block;
+        text-align: left;
+        border-bottom: 2px solid #aaaaaa;
+    }
+    .iconrow:last-child {
+        border: none;
+    }
+    .typegroup {
+        margin: 20px 0px;
+        .MuiButton-label {
+            display: inline-block;
+        }
+        .MuiButton-contained {
+            background-color: white !important;
+        }
+    }
+    .picktype {
+        display: inline-block;
+        width: 100%;
+        padding: 0px 30px;
+        .MuiButtonBase-root {
+            padding: 0px !important;
+            min-width: 0px;
+        }
+        h4 {
+            margin: 0px !important;
+            line-height: 25px;
+            font-weight: 600;
+        }
+    }
+    .MuiTab-root, .MuiTabs-indicator {
+        min-width: 80px !important;
+        width: 80px !important;
+    }
+    .MuiTypography-root {
+        margin-top: 10px;
+        .MuiBox-root {
+            text-align: center;
+        }
+    }
+    .MuiBox-root {
+        padding: 0px !important;
+    }
+}

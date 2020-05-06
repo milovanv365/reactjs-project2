@@ -1,0 +1,15 @@
+@import 'base/variable';
+@import 'base/style';
+@import 'base/responsive';
+
+svg {
+    g{
+    path{ fill: white !important;}
+}
+    }
+img {
+    .white{
+        background-color: white;
+    }
+}
+
