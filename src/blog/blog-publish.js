@@ -3,7 +3,6 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import { Editor } from '@tinymce/tinymce-react';
 import { getTinymce } from '@tinymce/tinymce-react/lib/es2015/main/ts/TinyMCE';
-// import tinymce from 'tinymce';
 
 class BlogPublish extends React.Component {
 	handleEditorChange = (content, editor) => {
@@ -58,7 +57,7 @@ class BlogPublish extends React.Component {
 											toolbar: 'undo redo | formatselect | ' +
 												'bold italic backcolor | alignleft aligncenter ' +
 												'alignright alignjustify | bullist numlist outdent indent | ' +
-												'removeformat | help',
+												'removeformat | image | help',
 											file_picker_callback: function (cb, value, meta) {
 												var input = document.createElement('input');
 												input.setAttribute('type', 'file');
