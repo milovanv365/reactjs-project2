@@ -4,7 +4,7 @@ import './index.scss';
 // import NoMatch from './pages/404';
 // import App from './demo_page/index';
 import Home from './home';
-import Blog from './blog/blog-post';
+import BlogPublish from './blog/blog-publish';
 import BlogDetails from './blog/blog-details';
 import BlogList from './blog/blog-list';
 import BlogLeftSidebar from './blog/blog-leftsidebar';
@@ -37,7 +37,7 @@ class Root extends React.Component {
 			<Router history={hist}>
 				<Switch>
 					<Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
-					<Route exact path={`${process.env.PUBLIC_URL}/blog-post`} component={Blog} />
+					<Route exact path={`${process.env.PUBLIC_URL}/blog-publish`} component={BlogPublish} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-details`} component={BlogDetails} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-list`} component={BlogList} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-left-sidebar`} component={BlogLeftSidebar} />
