@@ -4,6 +4,7 @@ import './index.scss';
 // import NoMatch from './pages/404';
 // import App from './demo_page/index';
 import Home from './home';
+import Blog from './blog/blog-post';
 import BlogDetails from './blog/blog-details';
 import BlogList from './blog/blog-list';
 import BlogLeftSidebar from './blog/blog-leftsidebar';
@@ -15,7 +16,6 @@ import SignUp from './pages/sign-up';
 import ForgetPassword from './pages/forget-pwd';
 import ResetPassword from './pages/reset-pwd';
 import SetPassword from './pages/set-password';
-import Dashboard from './pages/dashboard/dashboard';
 import ThankYou from './pages/thank-you';
 import Review from './pages/review';
 import PageNotFound from './pages/404';
@@ -37,6 +37,7 @@ class Root extends React.Component {
 			<Router history={hist}>
 				<Switch>
 					<Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
+					<Route exact path={`${process.env.PUBLIC_URL}/blog-post`} component={Blog} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-details`} component={BlogDetails} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-list`} component={BlogList} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-left-sidebar`} component={BlogLeftSidebar} />
@@ -56,7 +57,7 @@ class Root extends React.Component {
 					<Route path={`${process.env.PUBLIC_URL}/coming-soon`} component={ComingSoon} />
 					<Route path={`${process.env.PUBLIC_URL}/set-password`} component={SetPassword} />
 					<Route path={`${process.env.PUBLIC_URL}/accept-invitation`} component={AcceptInvitation} />
-					<Route path={`${process.env.PUBLIC_URL}/:team`} component={Dashboard} />
+					{/*<Route path={`${process.env.PUBLIC_URL}/:team`} component={Dashboard} />*/}
 					<Route component={PageNotFound} />
 				</Switch>
 			</Router>
