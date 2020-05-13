@@ -2,12 +2,31 @@ import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
 import { connect } from "react-redux";
-import { getData } from "../../services/action/index";
-import axios from "axios";
+import {getBlogData, deleteBlogData} from "../../services/action/index";
+
 
 class BlogListAdmin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteBlog = this.deleteBlog.bind(this);
+    this.state = {
+      currentBlog: {
+        id: null,
+        title: '',
+        body: ''
+      }
+    }
+  }
+
   componentDidMount() {
-    this.props.getData();
+    this.props.getBlogData();
+  }
+
+
+  deleteBlog = (e, blogId) => {
+    e.stopPropagation();
+    console.log(blogId);
+    this.props.deleteBlogData(blogId);
   }
 
   render() {
@@ -45,6 +64,7 @@ class BlogListAdmin extends React.Component {
               <table>
                 <thead>
                 <tr>
+                  <th className="hide">ID</th>
                   <th>Name</th>
                   <th>Actions</th>
                 </tr>
@@ -52,10 +72,11 @@ class BlogListAdmin extends React.Component {
                 <tbody>
                   {this.props.blogPosts.map(el => (
                     <tr key={el.id}>
+                      <td className="hide">{el.id}</td>
                       <td>{el.title}</td>
                       <td>
                         <button className="button btn-theme mr-2">Edit</button>
-                        <button className="button btn-theme">Delete</button>
+                        <button className="button btn-theme" onClick={(e) => this.deleteBlog(e, el.id)}>Delete</button>
                       </td>
                     </tr>
                   ))}
@@ -91,9 +112,14 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    getBlogData: () => dispatch(getBlogData()),
+    deleteBlogData: (blogId) => dispatch(deleteBlogData(blogId))
+  };
+}
+
 export default connect(
   mapStateToProps,
-  { getData }
+  mapDispatchToProps
 )(BlogListAdmin);
-
-// export default BlogListAdmin;

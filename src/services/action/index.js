@@ -9,6 +9,10 @@ export function setTeamData(data) {
   };
 }
 
-export function getData() {
-  return { type: ActionTypes.DATA_REQUESTED };
+export function getBlogData() {
+  return { type: ActionTypes.BLOG_DATA_REQUESTED };
+}
+
+export function deleteBlogData(blogId) {
+  return { type: ActionTypes.BLOG_DATA_DELETED };
 }
