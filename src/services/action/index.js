@@ -13,6 +13,6 @@ export function getBlogData() {
   return { type: ActionTypes.BLOG_DATA_REQUESTED };
 }
 
-export function deleteBlogData(blogId) {
-  return { type: ActionTypes.BLOG_DATA_DELETED };
+export function deleteBlogData({blogId}) {
+  return { type: ActionTypes.BLOG_DATA_DELETED, payload: {blogId} };
 }

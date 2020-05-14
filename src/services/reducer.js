@@ -15,14 +15,11 @@ const Reducer = (state = initialState, action) => {
         }
       }
       case ActionTypes.BLOG_DATA_LOADED: {
-        return Object.assign({}, state, {
-          blogPosts: state.blogPosts.concat(action.payload)
-        });
-      }
-
-      case ActionTypes.BLOG_DATA_DELETED: {
-        return Object.assign({}, state, {
-          blogPosts: state.blogPosts.concat(action.payload)
+        // return Object.assign({}, state, {
+        //   blogPosts: state.blogPosts.concat(action.payload)
+        // });
+        return  Object.assign({}, state, {
+          blogPosts: action.payload
         });
       }
 

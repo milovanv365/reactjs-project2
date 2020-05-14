@@ -9,24 +9,18 @@ class BlogListAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.deleteBlog = this.deleteBlog.bind(this);
-    this.state = {
-      currentBlog: {
-        id: null,
-        title: '',
-        body: ''
-      }
-    }
+    this.state = {}
   }
 
   componentDidMount() {
+    console.log('111')
     this.props.getBlogData();
   }
 
-
   deleteBlog = (e, blogId) => {
     e.stopPropagation();
-    console.log(blogId);
     this.props.deleteBlogData(blogId);
+    this.props.getBlogData();
   }
 
   render() {
@@ -107,15 +101,17 @@ class BlogListAdmin extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('333')
   return {
-    blogPosts: state.blogPosts.slice(0, 10)
+    blogPosts: state.blogPosts
   };
 }
 
 function mapDispatchToProps(dispatch) {
+  console.log('444')
   return {
     getBlogData: () => dispatch(getBlogData()),
-    deleteBlogData: (blogId) => dispatch(deleteBlogData(blogId))
+    deleteBlogData: (blogId) => dispatch(deleteBlogData({blogId}))
   };
 }
 

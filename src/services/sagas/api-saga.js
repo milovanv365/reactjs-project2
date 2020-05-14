@@ -1,4 +1,4 @@
-import { takeEvery, all, call, put } from "redux-saga/effects";
+import { takeEvery, call, put } from "redux-saga/effects";
 import * as ActionTypes from '../../constants/action-types'
 import axios from "axios";
 
@@ -10,18 +10,18 @@ export default function* watcherSaga() {
 function* workerSagaGetBlogData() {
   try {
     const payload = yield call(getBlogData);
-    console.log(`payload is ${payload}`);
+    console.log(`Load action: payload is ${payload}`);
     yield put({ type: ActionTypes.BLOG_DATA_LOADED, payload });
   } catch (e) {
     yield put({ type: ActionTypes.API_ERRORED, payload: e });
   }
 }
 
-function* workerSagaDeleteBlogData() {
+function* workerSagaDeleteBlogData(action) {
   try {
-    const payload = yield call(deleteBlogData);
-    console.log(`payload is ${payload}`);
-    yield put({ type: ActionTypes.BLOG_DATA_DELETED, payload });
+    const payload = yield call(deleteBlogData, action.payload);
+    console.log(`Delete action: payload is ${payload}`);
+    // yield put({ type: ActionTypes.BLOG_DATA_DELETED, payload });
   } catch (e) {
     yield put({ type: ActionTypes.API_ERRORED, payload: e });
   }
@@ -33,7 +33,7 @@ async function getBlogData() {
   return response.data
 }
 
-async function deleteBlogData() {
-  let response = await axios.delete('http://localhost:3001/posts')
+async function deleteBlogData({blogId}) {
+  let response = await axios.delete(`http://localhost:3001/posts/${blogId}`)
   return response.data
 }
