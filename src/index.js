@@ -39,14 +39,15 @@ class Root extends React.Component {
 			<Router history={hist}>
 				<Switch>
 					<Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
-					<Route exact path={`${process.env.PUBLIC_URL}/blog-publish`} component={BlogPublish} />
-					<Route path={`${process.env.PUBLIC_URL}/blog-details`} component={BlogDetails} />
-					<Route path={`${process.env.PUBLIC_URL}/blog-list`} component={BlogList} />
-					<Route path={`${process.env.PUBLIC_URL}/blog-list-admin`} component={BlogListAdmin} />
+					<Route exact path={`${process.env.PUBLIC_URL}/home`} component={Home} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-left-sidebar`} component={BlogLeftSidebar} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-right-sidebar`} component={BlogRightSidebar} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-leftside`} component={BlogLeftside} />
 					<Route path={`${process.env.PUBLIC_URL}/blog-rightside`} component={BlogRightside} />
+					<Route path={`${process.env.PUBLIC_URL}/blog-list`} component={BlogList} />
+					<Route path={`${process.env.PUBLIC_URL}/blog-list-admin`} component={BlogListAdmin} />
+					<Route exact path={`${process.env.PUBLIC_URL}/blog-publish`} component={BlogPublish} />
+					<Route path={`${process.env.PUBLIC_URL}/blog-details/:blogId`} component={BlogDetails} />
 					<Route path={`${process.env.PUBLIC_URL}/sign-in`} component={SignIn} />
 					<Route path={`${process.env.PUBLIC_URL}/sign-up`} component={SignUp} />
 					<Route path={`${process.env.PUBLIC_URL}/forget-password`} component={ForgetPassword} />

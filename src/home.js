@@ -10,6 +10,7 @@ import Testimonial from './components/testimonial';
 import FAQ from './components/faq';
 import Contact from './components/contact';
 import Subscribe from './components/subscribe';
+import Navbar from './components/navbar';
 import Footer from './components/footer';
 import { Link } from 'react-router-dom';
 
@@ -22,41 +23,42 @@ class Home extends React.Component {
 		return (
 			<div className="inner-page" data-spy="scroll" data-target=".navbar" data-offset="75">
 				{/* Navbar Section*/}
-				<nav className="navbar navbar-expand-lg  theme-nav fixed-top">
-					<div className="container">
-						<a className="navbar-brand" href={`${process.env.PUBLIC_URL}/`}><img src="assets/images/logo.png" alt="logo" /></a>
-						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-expanded="false" aria-label="Toggle navigation">
-							<span className="navbar-toggler-icon"><i className="fa fa-align-justify" aria-hidden="true"></i></span>
-						</button>
-						<div className="collapse navbar-collapse" id="mainmenu">
-							<ul className="navbar-nav ml-auto" id="mymenu">
-								<li className="nav-item ">
-									<a className="nav-link" href="/" >Home</a>
-								</li>
-								<li className="nav-item">
-									<a className="nav-link" href="#feature">Features</a>
-								</li>
-								<li className="nav-item">
-									<a href="/coming-soon" className="nav-link">Blog</a>
-								</li>
-								<li className="nav-item">
-									<a className="nav-link" href="#contact">contact us</a>
-								</li>
-								<li className="nav-item dropdown">
-									<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other Page</a>
-									<ul className="dropdown-menu">
-										{token === null && (
-										<React.Fragment>
-											<li className="nav-item"><Link className="nav-link" to={`${process.env.PUBLIC_URL}/sign-in`}>Sign In</Link></li>
-											<li className="nav-item"><Link className="nav-link" to={`${process.env.PUBLIC_URL}/sign-up`}>Sign Up</Link></li>
-										</React.Fragment>)}
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
+				{/*<nav className="navbar navbar-expand-lg  theme-nav fixed-top">*/}
+				{/*	<div className="container">*/}
+				{/*		<a className="navbar-brand" href={`${process.env.PUBLIC_URL}/`}><img src="assets/images/logo.png" alt="logo" /></a>*/}
+				{/*		<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-expanded="false" aria-label="Toggle navigation">*/}
+				{/*			<span className="navbar-toggler-icon"><i className="fa fa-align-justify" aria-hidden="true"></i></span>*/}
+				{/*		</button>*/}
+				{/*		<div className="collapse navbar-collapse" id="mainmenu">*/}
+				{/*			<ul className="navbar-nav ml-auto" id="mymenu">*/}
+				{/*				<li className="nav-item ">*/}
+				{/*					<a className="nav-link" href="/" >Home</a>*/}
+				{/*				</li>*/}
+				{/*				<li className="nav-item">*/}
+				{/*					<a className="nav-link" href="#feature">Features</a>*/}
+				{/*				</li>*/}
+				{/*				<li className="nav-item">*/}
+				{/*					<a href="/coming-soon" className="nav-link">Blog</a>*/}
+				{/*				</li>*/}
+				{/*				<li className="nav-item">*/}
+				{/*					<a className="nav-link" href="#contact">contact us</a>*/}
+				{/*				</li>*/}
+				{/*				<li className="nav-item dropdown">*/}
+				{/*					<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other Page</a>*/}
+				{/*					<ul className="dropdown-menu">*/}
+				{/*						{token === null && (*/}
+				{/*						<React.Fragment>*/}
+				{/*							<li className="nav-item"><Link className="nav-link" to={`${process.env.PUBLIC_URL}/sign-in`}>Sign In</Link></li>*/}
+				{/*							<li className="nav-item"><Link className="nav-link" to={`${process.env.PUBLIC_URL}/sign-up`}>Sign Up</Link></li>*/}
+				{/*						</React.Fragment>)}*/}
+				{/*					</ul>*/}
+				{/*				</li>*/}
+				{/*			</ul>*/}
+				{/*		</div>*/}
+				{/*	</div>*/}
+				{/*</nav>*/}
 
+				<Navbar />
 				{/* Home One Section Start */}
 				<section className="slide-bg" id="home">
 					<div className="animation-circle">

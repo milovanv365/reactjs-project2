@@ -10,7 +10,6 @@ export default function* watcherSaga() {
 function* workerSagaGetBlogData() {
   try {
     const payload = yield call(getBlogData);
-    console.log(`Load action: payload is ${payload}`);
     yield put({ type: ActionTypes.BLOG_DATA_LOADED, payload });
   } catch (e) {
     yield put({ type: ActionTypes.API_ERRORED, payload: e });
@@ -20,8 +19,6 @@ function* workerSagaGetBlogData() {
 function* workerSagaDeleteBlogData(action) {
   try {
     const payload = yield call(deleteBlogData, action.payload);
-    console.log(`Delete action: payload is ${payload}`);
-    // yield put({ type: ActionTypes.BLOG_DATA_DELETED, payload });
   } catch (e) {
     yield put({ type: ActionTypes.API_ERRORED, payload: e });
   }

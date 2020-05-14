@@ -13,11 +13,11 @@ class BlogListAdmin extends React.Component {
   }
 
   componentDidMount() {
-    console.log('111')
     this.props.getBlogData();
   }
 
   deleteBlog = (e, blogId) => {
+    e.preventDefault();
     e.stopPropagation();
     this.props.deleteBlogData(blogId);
     this.props.getBlogData();
@@ -69,7 +69,7 @@ class BlogListAdmin extends React.Component {
                       <td className="hide">{el.id}</td>
                       <td>{el.title}</td>
                       <td>
-                        <button className="button btn-theme mr-2">Edit</button>
+                        <button className="button btn-theme mr-2" onClick={() => this.props.history.push(`/blog-details/${el.id}`)}>Edit</button>
                         <button className="button btn-theme" onClick={(e) => this.deleteBlog(e, el.id)}>Delete</button>
                       </td>
                     </tr>
@@ -101,14 +101,12 @@ class BlogListAdmin extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('333')
   return {
     blogPosts: state.blogPosts
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log('444')
   return {
     getBlogData: () => dispatch(getBlogData()),
     deleteBlogData: (blogId) => dispatch(deleteBlogData({blogId}))

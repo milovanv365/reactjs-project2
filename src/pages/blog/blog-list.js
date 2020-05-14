@@ -1,8 +1,14 @@
 import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
+import {deleteBlogData, getBlogData} from "../../services/action";
+import {connect} from "react-redux";
 
 class BlogList extends React.Component {
+	componentDidMount() {
+		this.props.getBlogData();
+	}
+
 	render() {
 		document.body.classList.remove('landing-page');
 		document.body.classList.add('inner-page');
@@ -35,144 +41,33 @@ class BlogList extends React.Component {
 					{/*blog Section start*/}
 					<section className="blog-page">
 						<div className="container">
-							<div className="row">
-								<div className="col-sm-12 blog-list">
-									<div className="row blog-list">
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/1.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>1 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
+							<div className="row blog-list">
+								{this.props.blogPosts.map(el => (
+									<div className="col-lg-6 col-md-12" key={el.id}>
+										<div className="item news-slid">
+											<a href={`${process.env.PUBLIC_URL}/blog-details/${el.id}`}>
+												<div className="news-box">
+													<img src="/assets/images/blog/1.jpg" alt="news-1" className="img-fluid"/>
 												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/2.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>3 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
+											</a>
+											<div className="news-text">
+												<div className="blog-hover">
+													<h4>{ el.title }</h4>
+													<ul className="list-inline blog-details-list">
+														<li><a href={null}>{ el.author }</a></li>
+														<li><a href={null}>{ el.date }</a></li>
+														<li><a href={null}>{ el.comments } comments</a></li>
+														<li><a href={null}>{ el.views } View</a></li>
+													</ul>
 												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/3.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>1 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/4.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>5 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/5.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>6 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-6 col-md-12">
-											<div className="item news-slid">
-												<a href={`${process.env.PUBLIC_URL}/blog-details`}>
-													<div className="news-box">
-														<img src="assets/images/blog/6.jpg" alt="news-1" className="img-fluid"/>
-													</div>
-												</a>
-												<div className="news-text">
-													<div className="blog-hover">
-														<h4>lorem ipsum dolor sit amet</h4>
-														<ul className="list-inline blog-details-list">
-															<li><a href={null}>John Doe</a></li>
-															<li><a href={null}>8 Oct</a></li>
-															<li><a href={null}>25 comments</a></li>
-															<li><a href={null}>3 View</a></li>
-														</ul>
-													</div>
-													<p>lorem ipsum dolor sit amet, consecteturamet adipisicing elit, tempor incididunt ut labore. lorem ipsum dolor sit amet.</p>
-													<a href={`${process.env.PUBLIC_URL}/blog-details`} className="btn-theme">View more</a>
-												</div>
+												<p>{ el.description }</p>
+												<a href={`${process.env.PUBLIC_URL}/blog-details/${el.id}`} className="btn-theme">View more</a>
 											</div>
 										</div>
 									</div>
-								</div>
-
+								))}
+							</div>
+							<div className="row">
 								{/*paginations*/}
 								<div className="col-md-12">
 									<nav aria-label="Page navigation" className="blog-pagination">
@@ -219,4 +114,19 @@ class BlogList extends React.Component {
 	}
 }
 
-export default BlogList;
+function mapStateToProps(state) {
+	return {
+		blogPosts: state.blogPosts
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		getBlogData: () => dispatch(getBlogData()),
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(BlogList);
