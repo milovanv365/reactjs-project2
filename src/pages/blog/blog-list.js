@@ -1,12 +1,12 @@
 import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
-import {deleteBlogData, getBlogData} from "../../services/action";
+import {getBlogList} from "../../services/action";
 import {connect} from "react-redux";
 
 class BlogList extends React.Component {
 	componentDidMount() {
-		this.props.getBlogData();
+		this.props.getBlogList();
 	}
 
 	render() {
@@ -42,7 +42,7 @@ class BlogList extends React.Component {
 					<section className="blog-page">
 						<div className="container">
 							<div className="row blog-list">
-								{this.props.blogPosts.map(el => (
+								{this.props.blogs.map(el => (
 									<div className="col-lg-6 col-md-12" key={el.id}>
 										<div className="item news-slid">
 											<a href={`${process.env.PUBLIC_URL}/blog-details/${el.id}`}>
@@ -116,13 +116,13 @@ class BlogList extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		blogPosts: state.blogPosts
+		blogs: state.blogs
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getBlogData: () => dispatch(getBlogData()),
+		getBlogList: () => dispatch(getBlogList()),
 	};
 }
 

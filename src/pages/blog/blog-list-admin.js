@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
 import { connect } from "react-redux";
-import {getBlogData, deleteBlogData} from "../../services/action/index";
+import {getBlogList, deleteBlogData} from "../../services/action/index";
 
 
 class BlogListAdmin extends React.Component {
@@ -13,14 +13,14 @@ class BlogListAdmin extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getBlogData();
+    this.props.getBlogList();
   }
 
   deleteBlog = (e, blogId) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.deleteBlogData(blogId);
-    this.props.getBlogData();
+    this.props.getBlogList();
   }
 
   render() {
@@ -64,7 +64,7 @@ class BlogListAdmin extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                  {this.props.blogPosts.map(el => (
+                  {this.props.blogs.map(el => (
                     <tr key={el.id}>
                       <td className="hide">{el.id}</td>
                       <td>{el.title}</td>
@@ -102,13 +102,13 @@ class BlogListAdmin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    blogPosts: state.blogPosts
+    blogs: state.blogs
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBlogData: () => dispatch(getBlogData()),
+    getBlogList: () => dispatch(getBlogList()),
     deleteBlogData: (blogId) => dispatch(deleteBlogData({blogId}))
   };
 }

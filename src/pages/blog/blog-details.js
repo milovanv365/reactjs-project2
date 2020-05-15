@@ -1,12 +1,19 @@
 import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
+import {getBlogList, getBlog} from "../../services/action";
+import {connect} from "react-redux";
 
 class BlogDetails extends React.Component {
+	componentDidMount() {
+		const blogId = this.props.match.params.blogId;
+		this.props.getBlog(blogId);
+	}
 	render() {
 		document.body.classList.remove('landing-page');
 		document.body.classList.add('inner-page');
 
+		const {blog} = this.props
 		return (
 			<div>
 				<Navbar />
@@ -42,16 +49,15 @@ class BlogDetails extends React.Component {
 										</div>
 										<div className="news-text">
 											<div className="blog-hover">
-												<h4>There are many variations of passages of Lorem Ipsum available</h4>
+												<h4>{blog.title}</h4>
 												<ul className="list-inline blog-details-list">
-													<li><a href={null}>John Doe</a></li>
-													<li><a href={null}>1 Oct</a></li>
-													<li><a href={null}>25 comments</a></li>
-													<li><a href={null}>3 View</a></li>
+													<li><a href={null}>{blog.author}</a></li>
+													<li><a href={null}>{blog.date}</a></li>
+													<li><a href={null}>{blog.comments} comments</a></li>
+													<li><a href={null}>{blog.views} View</a></li>
 												</ul>
 											</div>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+											<p>{blog.content}</p>
 										</div>
 									</div>
 									<div className="blog-divider"></div>
@@ -133,4 +139,20 @@ class BlogDetails extends React.Component {
 	}
 }
 
-export default BlogDetails;
+function mapStateToProps(state) {
+	return {
+		blog: state.blog
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		getBlog: (blogId) => dispatch(getBlog({blogId})),
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(BlogDetails);
+// export default BlogDetails;

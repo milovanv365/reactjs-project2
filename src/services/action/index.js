@@ -9,10 +9,14 @@ export function setTeamData(data) {
   };
 }
 
-export function getBlogData() {
-  return { type: ActionTypes.BLOG_DATA_REQUESTED };
+export function getBlogList() {
+  return { type: ActionTypes.BLOG_LIST_REQUESTED };
+}
+
+export function getBlog({blogId}) {
+  return { type: ActionTypes.BLOG_DETAIL_REQUESTED, payload: {blogId} };
 }
 
 export function deleteBlogData({blogId}) {
-  return { type: ActionTypes.BLOG_DATA_DELETED, payload: {blogId} };
+  return { type: ActionTypes.BLOG_DELETE_REQUESTED, payload: {blogId} };
 }

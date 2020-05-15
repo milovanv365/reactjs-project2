@@ -3,7 +3,8 @@ import * as ActionTypes from '../constants/action-types'
 
 const initialState = {
     team_data: {},
-    blogPosts: []
+    blogs: [],
+    blog: {}
 };
 
 const Reducer = (state = initialState, action) => {
@@ -14,12 +15,18 @@ const Reducer = (state = initialState, action) => {
           team_data: action.payload,
         }
       }
-      case ActionTypes.BLOG_DATA_LOADED: {
+      case ActionTypes.BLOG_LIST_LOADED: {
         // return Object.assign({}, state, {
-        //   blogPosts: state.blogPosts.concat(action.payload)
+        //   blogs: state.blogs.concat(action.payload)
         // });
         return  Object.assign({}, state, {
-          blogPosts: action.payload
+          blogs: action.payload
+        });
+      }
+
+      case ActionTypes.BLOG_DETAIL_LOADED: {
+        return  Object.assign({}, state, {
+          blog: action.payload
         });
       }
 
