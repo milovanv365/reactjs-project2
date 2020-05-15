@@ -88,24 +88,22 @@ class BlogList extends React.Component {
 									</div>
 								))}
 							</div>
-							<div className="row">
-								<nav aria-label="Page navigation" className="blog-pagination">
-									<Pagination
-										activePage={this.state.activePage}
-										itemsCountPerPage={this.state.perPage}
-										totalItemsCount={this.props.blogs.totalCount}
-										pageRangeDisplayed={5}
-										onChange={this.handlePageChange.bind(this)}
-										innerClass={"pagination justify-content-center blog-pagin"}
-										itemClass={"page-item"}
-										linkClass={"page-link"}
-										linkClassPrev={"page-link"}
-										linkClassNext={"page-link"}
-										linkClassFirst={"page-link"}
-										linkClassLast={"page-link"}
-									/>
-								</nav>
-							</div>
+							<nav aria-label="Page navigation" className="blog-pagination">
+								<Pagination
+									activePage={this.state.activePage}
+									itemsCountPerPage={this.state.perPage}
+									totalItemsCount={this.props.blogs.totalCount}
+									pageRangeDisplayed={5}
+									onChange={this.handlePageChange.bind(this)}
+									innerClass={"pagination justify-content-center blog-pagin"}
+									itemClass={"page-item"}
+									linkClass={"page-link"}
+									linkClassPrev={"page-link"}
+									linkClassNext={"page-link"}
+									linkClassFirst={"page-link"}
+									linkClassLast={"page-link"}
+								/>
+							</nav>
 						</div>
 
 						<div className="animation-circle absolute">

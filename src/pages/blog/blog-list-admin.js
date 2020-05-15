@@ -3,24 +3,43 @@ import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
 import { connect } from "react-redux";
 import {getBlogList, deleteBlogData} from "../../services/action/index";
+import Pagination from "react-js-pagination";
 
 
 class BlogListAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.deleteBlog = this.deleteBlog.bind(this);
-    this.state = {}
+    this.state = {
+      activePage: 1,
+      perPage: 10,
+    };
   }
 
   componentDidMount() {
-    this.props.getBlogList();
+    this.props.getBlogList({
+      page: this.state.activePage,
+      limit: this.state.perPage
+    });
+  }
+
+  handlePageChange = (pageNumber) => {
+    this.setState({activePage: pageNumber});
+
+    this.props.getBlogList({
+      page: pageNumber,
+      limit: this.state.perPage
+    });
   }
 
   deleteBlog = (e, blogId) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.deleteBlogData(blogId);
-    this.props.getBlogList();
+    this.props.getBlogList({
+      page: this.state.activePage,
+      limit: this.state.perPage
+    });
   }
 
   render() {
@@ -64,7 +83,7 @@ class BlogListAdmin extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                  {this.props.blogs.map(el => (
+                  {this.props.blogs.data.map(el => (
                     <tr key={el.id}>
                       <td className="hide">{el.id}</td>
                       <td>{el.title}</td>
@@ -76,6 +95,22 @@ class BlogListAdmin extends React.Component {
                   ))}
                 </tbody>
               </table>
+              <nav aria-label="Page navigation" className="blog-pagination">
+                <Pagination
+                  activePage={this.state.activePage}
+                  itemsCountPerPage={this.state.perPage}
+                  totalItemsCount={this.props.blogs.totalCount}
+                  pageRangeDisplayed={5}
+                  onChange={this.handlePageChange.bind(this)}
+                  innerClass={"pagination justify-content-center blog-pagin"}
+                  itemClass={"page-item"}
+                  linkClass={"page-link"}
+                  linkClassPrev={"page-link"}
+                  linkClassNext={"page-link"}
+                  linkClassFirst={"page-link"}
+                  linkClassLast={"page-link"}
+                />
+              </nav>
             </div>
 
             <div className="animation-circle absolute">
@@ -108,7 +143,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBlogList: () => dispatch(getBlogList()),
+    getBlogList: (pagination) => dispatch(getBlogList(pagination)),
     deleteBlogData: (blogId) => dispatch(deleteBlogData({blogId}))
   };
 }
