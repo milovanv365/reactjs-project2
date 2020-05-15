@@ -8,9 +8,9 @@ export default function* watcherSaga() {
   yield takeEvery(ActionTypes.BLOG_DELETE_REQUESTED, workerSagaDeleteBlog);
 }
 
-function* workerSagaGetBlogList() {
+function* workerSagaGetBlogList(action) {
   try {
-    const payload = yield call(getBlogList);
+    const payload = yield call(getBlogList, action.payload);
     yield put({ type: ActionTypes.BLOG_LIST_LOADED, payload });
   } catch (e) {
     yield put({ type: ActionTypes.API_ERRORED, payload: e });
@@ -34,9 +34,9 @@ function* workerSagaDeleteBlog(action) {
   }
 }
 
-async function getBlogList() {
+async function getBlogList(pagination) {
   // let response = await axios.get('https://jsonplaceholder.typicode.com/blogs')
-  let response = await axios.get('http://localhost:3001/blogs')
+  let response = await axios.get(`http://localhost:3001/blogs?_page=${pagination.page}&_limit=${pagination.limit}`)
   return response.data
 }
 

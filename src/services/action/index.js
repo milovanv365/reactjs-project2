@@ -9,8 +9,8 @@ export function setTeamData(data) {
   };
 }
 
-export function getBlogList() {
-  return { type: ActionTypes.BLOG_LIST_REQUESTED };
+export function getBlogList(pagination) {
+  return { type: ActionTypes.BLOG_LIST_REQUESTED, payload: pagination };
 }
 
 export function getBlog({blogId}) {

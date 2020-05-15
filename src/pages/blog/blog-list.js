@@ -1,12 +1,33 @@
 import React from 'react';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
+import Pagination from "react-js-pagination";
 import {getBlogList} from "../../services/action";
 import {connect} from "react-redux";
 
 class BlogList extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			activePage: 1,
+			perPage: 10,
+		};
+;	}
+
 	componentDidMount() {
-		this.props.getBlogList();
+		this.props.getBlogList({
+			page: this.state.activePage,
+			limit: this.state.perPage
+		});
+	}
+
+	handlePageChange = (pageNumber) => {
+		this.setState({activePage: pageNumber});
+
+		this.props.getBlogList({
+			page: pageNumber,
+			limit: this.state.perPage
+		});
 	}
 
 	render() {
@@ -42,7 +63,7 @@ class BlogList extends React.Component {
 					<section className="blog-page">
 						<div className="container">
 							<div className="row blog-list">
-								{this.props.blogs.map(el => (
+								{this.props.blogs.data.map(el => (
 									<div className="col-lg-6 col-md-12" key={el.id}>
 										<div className="item news-slid">
 											<a href={`${process.env.PUBLIC_URL}/blog-details/${el.id}`}>
@@ -68,27 +89,22 @@ class BlogList extends React.Component {
 								))}
 							</div>
 							<div className="row">
-								{/*paginations*/}
-								<div className="col-md-12">
-									<nav aria-label="Page navigation" className="blog-pagination">
-										<ul className="pagination justify-content-center blog-pagin">
-											<li className="page-item">
-												<a className="page-link" href={null} aria-label="Previous">
-													<i className="fa fa-angle-left" aria-hidden="true"></i>
-												</a>
-											</li>
-											<li className="page-item active"><a className="page-link" href={null}>1</a></li>
-											<li className="page-item"><a className="page-link" href={null}>2</a></li>
-											<li className="page-item"><a className="page-link" href={null}>3</a></li>
-											<li className="page-item">
-												<a className="page-link" href={null} aria-label="Next">
-													<i className="fa fa-angle-right" aria-hidden="true"></i>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-								{/*paginations end*/}
+								<nav aria-label="Page navigation" className="blog-pagination">
+									<Pagination
+										activePage={this.state.activePage}
+										itemsCountPerPage={this.state.perPage}
+										totalItemsCount={this.props.blogs.totalCount}
+										pageRangeDisplayed={5}
+										onChange={this.handlePageChange.bind(this)}
+										innerClass={"pagination justify-content-center blog-pagin"}
+										itemClass={"page-item"}
+										linkClass={"page-link"}
+										linkClassPrev={"page-link"}
+										linkClassNext={"page-link"}
+										linkClassFirst={"page-link"}
+										linkClassLast={"page-link"}
+									/>
+								</nav>
 							</div>
 						</div>
 
@@ -122,7 +138,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getBlogList: () => dispatch(getBlogList()),
+		getBlogList: (pagination) => dispatch(getBlogList(pagination)),
 	};
 }
 

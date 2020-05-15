@@ -3,7 +3,10 @@ import * as ActionTypes from '../constants/action-types'
 
 const initialState = {
     team_data: {},
-    blogs: [],
+    blogs: {
+      totalCount: 1,
+      data: []
+    },
     blog: {}
 };
 
@@ -20,7 +23,7 @@ const Reducer = (state = initialState, action) => {
         //   blogs: state.blogs.concat(action.payload)
         // });
         return  Object.assign({}, state, {
-          blogs: action.payload
+          blogs: { totalCount:12, data:action.payload }
         });
       }
 
