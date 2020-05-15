@@ -35,18 +35,18 @@ function* workerSagaDeleteBlog(action) {
 }
 
 async function getBlogList() {
-  // let response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-  let response = await axios.get('http://localhost:3001/posts')
+  // let response = await axios.get('https://jsonplaceholder.typicode.com/blogs')
+  let response = await axios.get('http://localhost:3001/blogs')
   return response.data
 }
 
 async function getBlog({blogId}) {
-  let response = await axios.get(`http://localhost:3001/posts/${blogId}`)
+  let response = await axios.get(`http://localhost:3001/blogs/${blogId}`)
   return response.data
 }
 
 
 async function deleteBlogData({blogId}) {
-  let response = await axios.delete(`http://localhost:3001/posts/${blogId}`)
+  let response = await axios.delete(`http://localhost:3001/blogs/${blogId}`)
   return response.data
 }
